@@ -18,6 +18,5 @@ LAG(match_date) OVER (ORDER BY match_date) AS previous_bad_game
 from Lebron_tbl
 where pts < 10 
 -- game that lebron may not play null value open this mark if it count and it will use null
--- if use null lebron will make more than 10pts = 365 games
--- or pts IS NULL
+or pts IS NULL
 ) f

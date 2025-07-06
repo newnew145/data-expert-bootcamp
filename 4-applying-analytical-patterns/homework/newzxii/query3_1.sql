@@ -16,7 +16,8 @@ WHERE rn = 1
 ),
 summary_tbl AS (
 select cur.team_abbreviation, cur.row_flag AS start_flg,
--- use row between to sum up between 90 rows (day)
+-- use sum with windown function and row between to sum up between 90 rows (day)
+-- this method work well when create index and order data by date
 sum(cur.win_flag) OVER (partition by cur.team_abbreviation ROWS BETWEEN 90 PRECEDING AND CURRENT ROW)AS win_cnt
 from win_by_date cur
 group by cur.team_abbreviation, cur.row_flag , cur.win_flag
